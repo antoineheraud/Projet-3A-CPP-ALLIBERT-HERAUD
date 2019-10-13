@@ -14,17 +14,20 @@ class CPU : public Component {
 		int active;
 		string label;
 		FILE* code;
-		
+
 		void write();
 		void read();
 		void activate();
 		void desactivate();
 
 	public:
-		void simulate();
+		void simulate(){
+			// CPU ask freq time
+			
+		}
 		CPU(string def);
 		~CPU();
-	
+
 }
 
 
