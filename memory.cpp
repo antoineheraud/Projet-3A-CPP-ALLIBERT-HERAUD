@@ -22,7 +22,13 @@ Memory::Memory(string def) {
 	}
       }
       else if(word.compare("LABEL:") == 0){
-	this->label = line;
+	this->label = "";
+	while(!s.eof()){
+	  s >> parameter;
+	  this->label.append(parameter);
+	  this->label.append(" ");
+	}
+	this->label.erase(this->label.size()-1, 1);
       }
       else if(word.compare("SIZE:") == 0){
         s >> parameter;
@@ -33,7 +39,13 @@ Memory::Memory(string def) {
 	this->access_time = stoi(parameter, nullptr, 10);
       }
       else if(word.compare("SOURCE:") == 0){
-	this->source = line;
+	this->source = "";
+	while(!s.eof()){
+	  s >> parameter;
+	  this->source.append(parameter);
+	  this->source.append(" ");
+	}
+	this->source.erase(this->source.size()-1, 1);
       }
       else {
 	cout << "Error : wrong file" << endl;
@@ -41,22 +53,38 @@ Memory::Memory(string def) {
     }
   }
   this->storage = new Data_value[(int) this->size];
+  this->current_address = 0;
+  this->counter = 0;
+  this->psource = 0;
   cout << "Memory succesfully loaded" << endl;
 }
 
-void Memory::load_source(){
+Memory::~Memory(){
+  delete [] this->storage;
+}
 
+void Memory::info(){
+  std::cout << "TYPE: MEMORY" << std::endl;
+  std::cout << "LABEL: " << this->label << std::endl;
+  std::cout << "SIZE: " << this->size << std::endl;
+  std::cout << "COUNTER: " << this->counter << std::endl;
+  std::cout << "SOURCE: " << this->source << std::endl;
+  std::cout << "ACCESS_TIME: " << this->access_time << std::endl;
+}
+
+
+void Memory::load_source(Component* ptr){
+  this->psource = ptr;
 }
 
 double Memory::get_size(){
   return this->size;
-}
+} 
 
 void Memory::erase(){
   int i;
   for(i=0; i<this->size; ++i){
-    this->storage[i].value = 0;
-    this->storage[i].valid = false;
+    this->storage[i].update(0, false);
   }
 }
 
@@ -69,11 +97,11 @@ void Memory::simulate(){
   int i;
   if(this->counter % access_time == 0){
     this->counter = 0;
-    for(i = 0; i<psource->get_width(); ++i){
+    for(i = 0; i<(int)psource->get_size(); ++i){
       donnee = psource->get_data(i);
       if(donnee.isvalid()){
-	this->storage[current_address].value = donnee.get_value();
-	this->storage[current_address].valid = donnee.isvalid();
+	this->storage[this->current_address].update(donnee.get_value(), donnee.isvalid());
+	this->current_address = (this->current_address+1)%(int)this->size;
       }
       else{
 	break;

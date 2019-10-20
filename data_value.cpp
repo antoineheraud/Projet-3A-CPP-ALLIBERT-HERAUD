@@ -23,3 +23,6 @@ Data_value::Data_value(double val, bool validity){
   this->value = val;
   this->valid = validity;
 }
+
+Data_value::~Data_value(){
+}

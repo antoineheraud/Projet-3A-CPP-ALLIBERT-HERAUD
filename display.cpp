@@ -14,11 +14,11 @@ Display::Display(string def){
   else {
     while ( getline (myfile, line)){
       stringstream s(line);
-      s >> word;;
+      s >> word;
       if (word.compare("TYPE:") == 0){
         s >> parameter;
 	if(parameter.compare("DISPLAY") != 0) {
-	  cout << "The type of the loaded file is not accurate for a DISPLAY" << endl;
+	  std::cout << "The type of the loaded file is not accurate for a DISPLAY" << std::endl;
 	  exit(1);
 	}
       }
@@ -27,20 +27,47 @@ Display::Display(string def){
 	this->refresh = stoi(parameter, nullptr, 10);
       }
       else if(word.compare("SOURCE:") == 0){
-	this->source = line;
+	this->source = "";
+	while(!s.eof()){
+	  s >> parameter;
+	  this->source.append(parameter);
+	  this->source.append(" ");
+	}
+	this->source.erase(this->source.size()-1, 1);
       }
       else {
 	std::cout << "Error : wrong file" << std::endl;
       }
+      this->counter = 0;
+      this->psource = 0;
     }
   }
   std::cout << "Display succesfully loaded" <<std:: endl;
 }
 
+void Display::info(){
+  std::cout << "TYPE: DISPLAY" << std::endl;
+  std::cout << "REFRESH: " << this->refresh << std::endl;
+  std::cout << "COUNTER: " << this->counter << std::endl;
+  std::cout << "SOURCE: " << this->source << std::endl;
+}
 
-void Display::load_source(){
-  
 
+double get_size(){
+  std::cout << "This function cannot be used in Display" << std::endl;
+  return 0;
+}
+
+
+Data_value get_data(double number){
+  std::cout << "This function cannot be used in Display" << std::endl;
+  Data_value donnee(number, false);
+  return donnee;
+}
+
+
+void Display::load_source(Component* ptr){
+  this->psource = ptr;
 }
 
 

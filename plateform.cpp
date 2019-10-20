@@ -1,21 +1,16 @@
-#ifndef PLATEFORM
-#define PLATEFORM
+#include "component.hpp"
+#include "display.hpp"
 
-#include<iostream>
+Plateform::Plateform(string def){
+  string line;
 
-using namespace std;
-
-class Plateform {
-
-	private:
-		int counter;
-	
-	public:
-		void simulate();
-		Plateform(string def);
-		~Plateform();
-
+  ifstream myfile(def);
+  if (!myfile.is_open()){
+    std::cout << "Error while trying to open the file : "<< def << std::endl;
+  }
+  else {
+    while ( getline (myfile, line)){
+      
+    }
+  }
 }
-
-
-#endif
