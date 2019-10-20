@@ -7,16 +7,17 @@
 using namespace std;
 class Instruction{
   private :
-    char* op_code;
+    string op_code;
     double op_A;
     double op_B;
 
 
   public :
-  Instruction(char* opc, int A, int B);
+  Instruction(string opc, double A, double B);
   ~Instruction();
   double getA();
   double getB();
+  string getopc();
 };
 class Program{
   private:
@@ -28,4 +29,6 @@ class Program{
     ~Program();
     double compute();
     void ask(int F);
+    int is_finished();           //return 1 when finched, 0 if not
+    void reset();
 };
