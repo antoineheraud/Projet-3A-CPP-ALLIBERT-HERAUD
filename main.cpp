@@ -1,22 +1,27 @@
 #include "display.hpp"
 #include "memory.hpp"
 #include "data_value.hpp"
+#include "plateform.hpp"
 
 int main(){
 
+  Plateform plt1("testdata/platform.txt");
+  Component* tabl = plt1.get_tab();
 
-  Memory mem1("testdata/mem1.txt");
-  Display disp1("testdata/display.txt");
 
-  disp1.load_source(&mem1);
+  tabl[2].load_source(&tabl[0]);
 
   std::cout << "------------------" << endl;
   
-  disp1.info();
+  tabl[2].psource->info();
+  
+  std::cout << "------------------" << endl;
+  
+  tabl[1].info();
   
   std::cout << "------------------" << endl;
 
-  disp1.psource->info();
+  tabl[2].info();
 
   std::cout << "------------------" << endl;
 

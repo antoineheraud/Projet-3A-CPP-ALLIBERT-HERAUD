@@ -24,8 +24,9 @@ private:
 public:
   void simulate();
   double get_size();
+  string get_source();
   void load_source(Component* ptr);
-  Data_value get_data(double number);
+  Data_value get_data(double number = 0);
   void info();
   Memory(string def);
   ~Memory();

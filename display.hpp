@@ -19,10 +19,11 @@ public:
   Component* psource;
 
   double get_size();
-  Data_value get_data(double number);
+  Data_value get_data(double number = 0);
   void simulate();
   void info();
   void load_source(Component* ptr);
+  string get_source();
   Display(string def);
   ~Display();
   		 

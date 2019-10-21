@@ -50,6 +50,11 @@ void Display::info(){
 }
 
 
+string Display::get_source(){
+  return this->source;
+}
+
+
 Display::Display(string def){
   string line;
   string word;

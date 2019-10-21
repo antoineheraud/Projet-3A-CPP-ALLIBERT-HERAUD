@@ -17,7 +17,7 @@ Memory::Memory(string def) {
       if(word.compare("TYPE:") == 0){
 	s >> parameter;
 	if(parameter.compare("MEMORY") != 0) {
-	  cout << "The type of the loaded file is not accurate for a MEMORYY" << endl;
+	  std::cout << "The type of the loaded file is not accurate for a MEMORYY" << std::endl;
 	  exit(1);
 	}
       }
@@ -75,6 +75,11 @@ void Memory::info(){
 
 void Memory::load_source(Component* ptr){
   this->psource = ptr;
+}
+
+
+string Memory::get_source(){
+  return this->source;
 }
 
 double Memory::get_size(){
