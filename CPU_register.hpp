@@ -1,5 +1,5 @@
-#ifndef CPU_REGISTER
-#define CPU_REGISTER
+#ifndef CPU_REGISTER_
+#define CPU_REGISTER_
 
 #include "components.hpp"
 

@@ -11,6 +11,9 @@ Plateform::Plateform(string def){
   else {
     while ( getline (myfile, line)){
       
+      
+      
+      
     }
   }
 }

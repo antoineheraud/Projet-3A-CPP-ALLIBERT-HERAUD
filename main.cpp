@@ -1,5 +1,5 @@
-#include "memory.hpp"
 #include "display.hpp"
+#include "memory.hpp"
 #include "data_value.hpp"
 
 int main(){

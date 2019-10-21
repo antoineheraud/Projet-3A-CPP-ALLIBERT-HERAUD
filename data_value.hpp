@@ -1,5 +1,5 @@
-#ifndef DATA_VALUE
-#define DATA_VALUE
+#ifndef DATA_VALUE_
+#define DATA_VALUE_
 
 #include <iostream>
 #include <string>

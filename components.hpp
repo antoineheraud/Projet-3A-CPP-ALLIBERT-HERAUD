@@ -1,5 +1,5 @@
-#ifndef COMPONENTS
-#define COMPONENTS
+#ifndef COMPONENTS_
+#define COMPONENTS_
 
 #include "data_value.hpp"
 
@@ -12,6 +12,7 @@ public:
   virtual Data_value get_data(double number) = 0;
   virtual void simulate() = 0;
   virtual void info() = 0;
+
 		
 };
 

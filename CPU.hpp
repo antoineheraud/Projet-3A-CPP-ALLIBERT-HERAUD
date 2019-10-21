@@ -1,5 +1,5 @@
-#ifndef CPU
-#define CPU
+#ifndef CPU_
+#define CPU_
 
 #include "components.hpp"
 

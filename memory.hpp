@@ -1,7 +1,7 @@
 //Memory.hpp
 
-#ifndef MEMORY
-#define MEMORY
+#ifndef MEMORY_
+#define MEMORY_
 
 #include "components.hpp"
 

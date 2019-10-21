@@ -2,6 +2,54 @@
 //Display.cpp
 
 
+
+double Display::get_size(){
+  std::cout << "This function cannot be used in Display" << std::endl;
+  return 0;
+}
+
+
+Data_value Display::get_data(double number){
+  std::cout << "This function cannot be used in Display" << std::endl;
+  Data_value donnee(number, false);
+  return donnee;
+}
+
+
+void Display::load_source(Component* ptr){
+  this->psource = ptr;
+}
+
+
+void Display::simulate(){
+  double i;
+  Data_value donnee;
+  
+   if(this->counter % this->refresh == 0){
+    this->counter = 0;
+    for(i=0; i<psource->get_size(); ++i){
+      donnee = psource->get_data(i);
+      if(donnee.isvalid()){
+	std::cout << donnee.get_value() << std::endl;
+      }
+      else {
+	break;
+      }
+    }
+  }
+  this->counter += 1;
+  std::cout << "-------------" << std::endl;
+}
+
+
+void Display::info(){
+  std::cout << "TYPE: DISPLAY" << std::endl;
+  std::cout << "REFRESH: " << this->refresh << std::endl;
+  std::cout << "COUNTER: " << this->counter << std::endl;
+  std::cout << "SOURCE: " << this->source << std::endl;
+}
+
+
 Display::Display(string def){
   string line;
   string word;
@@ -45,49 +93,8 @@ Display::Display(string def){
   std::cout << "Display succesfully loaded" <<std:: endl;
 }
 
-void Display::info(){
-  std::cout << "TYPE: DISPLAY" << std::endl;
-  std::cout << "REFRESH: " << this->refresh << std::endl;
-  std::cout << "COUNTER: " << this->counter << std::endl;
-  std::cout << "SOURCE: " << this->source << std::endl;
-}
+
+Display::~Display(){}
 
 
-double get_size(){
-  std::cout << "This function cannot be used in Display" << std::endl;
-  return 0;
-}
-
-
-Data_value get_data(double number){
-  std::cout << "This function cannot be used in Display" << std::endl;
-  Data_value donnee(number, false);
-  return donnee;
-}
-
-
-void Display::load_source(Component* ptr){
-  this->psource = ptr;
-}
-
-
-void Display::simulate(){
-  double i;
-  Data_value donnee;
-  
-  if(this->counter % this->refresh == 0){
-    this->counter = 0;
-    for(i=0; i<psource->get_size(); ++i){
-      donnee = psource->get_data(i);
-      if(donnee.isvalid()){
-	std::cout << donnee.get_value() << std::endl;
-      }
-      else {
-	break;
-      }
-    }
-  }
-  this->counter += 1;
-  std::cout << "-------------" << std::endl;
-}
 
