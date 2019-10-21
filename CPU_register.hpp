@@ -1,7 +1,7 @@
-#ifndef CPU_REGISTER
-#define CPU_REGISTER
+#ifndef CPU_REGISTER_
+#define CPU_REGISTER_
 
-#include<iostream>
+#include "components.hpp"
 
 class CPU_Register : public Component {
 
@@ -12,9 +12,9 @@ class CPU_Register : public Component {
 		void write();
 		void read();
 		bool isempty();
-		CPU_Register(fstream fichier );
+		CPU_Register();
 		~CPU_Register();
 		
-}
+};
 
 #endif

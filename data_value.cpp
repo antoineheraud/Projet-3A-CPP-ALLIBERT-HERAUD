@@ -1,22 +1,28 @@
-#ifndef DATA_VALUE
-#define DATA_VALUE
-
-#include<iostream>
+#include "data_value.hpp"
 
 
-class Data_value : public Component {
-
-	private:
-		double value;
-		bool valid;
-	
-	public:
-		bool isvalid();
-		void write();
-		void read();
-		Data_value();
-		~Data_value();
-	
+bool Data_value::isvalid(){
+  return this->valid;
 }
 
-#endif
+double Data_value::get_value(){
+  return this->value;
+}
+
+void Data_value::update(double val, bool validity){
+  this->value = val;
+  this->valid = validity;
+}
+
+Data_value::Data_value(){
+  this->value = 0;
+  this->valid = false;
+}
+
+Data_value::Data_value(double val, bool validity){
+  this->value = val;
+  this->valid = validity;
+}
+
+Data_value::~Data_value(){
+}
