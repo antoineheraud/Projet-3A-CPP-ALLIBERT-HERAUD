@@ -64,12 +64,12 @@ Memory::~Memory(){
 }
 
 void Memory::info(){
-  std::cout << "TYPE: MEMORY" << std::endl;
-  std::cout << "LABEL: " << this->label << std::endl;
-  std::cout << "SIZE: " << this->size << std::endl;
-  std::cout << "COUNTER: " << this->counter << std::endl;
-  std::cout << "SOURCE: " << this->source << std::endl;
-  std::cout << "ACCESS_TIME: " << this->access_time << std::endl;
+  std::cout << "TYPE         : MEMORY" << std::endl;
+  std::cout << "LABEL        : " << this->label << std::endl;
+  std::cout << "SIZE         : " << this->size << std::endl;
+  std::cout << "COUNTER      : " << this->counter << std::endl;
+  std::cout << "SOURCE       : " << this->source << std::endl;
+  std::cout << "ACCESS_TIME  : " << this->access_time << std::endl;
 }
 
 
@@ -77,10 +77,19 @@ void Memory::load_source(Component* ptr){
   this->psource = ptr;
 }
 
+Component* Memory::get_ptr(){
+  return this->psource;
+}
+
 
 string Memory::get_source(){
   return this->source;
 }
+
+string Memory::get_label(){
+  return this->label;
+}
+
 
 double Memory::get_size(){
   return this->size;
@@ -93,7 +102,7 @@ void Memory::erase(){
   }
 }
 
-Data_value Memory::get_data(double number){
+Data_value Memory::read(double number){
   return this->storage[(int) number% (int) this->size];
 }
 
@@ -103,7 +112,7 @@ void Memory::simulate(){
   if(this->counter % access_time == 0){
     this->counter = 0;
     for(i = 0; i<(int)psource->get_size(); ++i){
-      donnee = psource->get_data(i);
+      donnee = psource->read(i);
       if(donnee.isvalid()){
 	this->storage[this->current_address].update(donnee.get_value(), donnee.isvalid());
 	this->current_address = (this->current_address+1)%(int)this->size;

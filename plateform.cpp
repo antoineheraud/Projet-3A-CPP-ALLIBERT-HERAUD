@@ -6,7 +6,7 @@
 #include "CPU.hpp"
 
 
-Component& Plateform::create(string def){
+Component* Plateform::create(string def){
   string line;
   string word;
   string parameter;
@@ -24,19 +24,19 @@ Component& Plateform::create(string def){
     else {
       s >> parameter;
       if(parameter.compare("MEMORY") == 0){
-	Memory mem1(def);
+	Memory* mem1 = new Memory(def);
 	return mem1;
       }
       else if(parameter.compare("DISPLAY") == 0){
-      	Display disp1(def);
+      	Display* disp1 = new Display(def);
 	return disp1;
       }
       else if(parameter.compare("CPU") == 0){
-	Display cpu1(def);
+	CPU* cpu1 = new CPU(def);
 	return cpu1;
       }
       else if(parameter.compare("BUS") == 0){
-	Display bus1(def);
+	Bus* bus1 = new Bus(def);
 	return bus1;
       }
       else{
@@ -55,22 +55,23 @@ Plateform::Plateform(string def){
   int i = 0;
   int j = 0;
   int size = 0;
-  Component* tabl = new Component[10];
+  vector<Component*> tabl;
   ifstream myfile(def);
   if (!myfile.is_open()){
     std::cout << "Error while trying to open the file : "<< def << std::endl;
   }
   else {
     while ( getline (myfile, line)){
-      tabl[size] = create(line);
+      tabl.push_back(create(line));
       ++size;
     }
     for(i=0; i<size; ++i){
-      source = tabl[i].get_source();
+      source = tabl[i]->get_source();
       for(j=0; j<size; ++j){
-	
+	if(tabl[j]->get_label() == source){
+	  tabl[i]->load_source(tabl[j]);
+	}
       }
-      tabl[i].load_source();
     }
   }
   this->tableau = tabl;
@@ -78,11 +79,15 @@ Plateform::Plateform(string def){
 }
 
 
-Component* Plateform::get_tab(){
+vector<Component*> Plateform::get_tab(){
   return this->tableau;
 }
 
 
 int Plateform::get_nb_obj(){
   return this->nb_obj;
+}
+
+
+Plateform::~Plateform(){
 }
