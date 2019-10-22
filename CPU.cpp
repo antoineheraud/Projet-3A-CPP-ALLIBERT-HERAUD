@@ -4,10 +4,10 @@
 using namespace std;
 
 void CPU::simulate(){
-	cout << "Un" << endl;
+	//cout << "Un" << endl;
 	double result = 0;
-	for (double i = 0; i<freq; ++i){cout << "Loop" << endl;
-		if (Prog->is_finished() == 1){cout << "fin" << endl;
+	for (double i = 0; i<freq; ++i){//cout << "Loop" << endl;
+		if (Prog->is_finished() == 1){//cout << "fin" << endl;
 
 			if (active<cores){
 				active += 1;
@@ -16,9 +16,9 @@ void CPU::simulate(){
 			}
 			break;
 		}
-		cout << "Deux" << endl;
+		//cout << "Deux" << endl;
 		result = Prog->compute();
-		cout << "Trois" << endl;
+		//cout << "Trois" << endl;
 		reg->write(result);
 	}
 }
@@ -59,7 +59,7 @@ CPU::CPU(string def) {
 	}
 	Fp >> word >> parameter;
 	if (word.compare("FREQUENCY:")==0){
-		freq = stod(parameter);
+		freq = stoi(parameter);
 	}
 	else {
 		cerr << "Wrong file FREQ" << endl;
@@ -78,7 +78,8 @@ CPU::~CPU(){
 
 }
 double CPU::get_size(){
-	cout << "pas pour CPU" << endl;
+	//cout << "pas pour CPU" << endl;
+	printf("Pas pour CPU\n");
 	return 0;
 }
 Data_value CPU::read(){
@@ -90,14 +91,28 @@ Data_value CPU::read(){
 		return reg->read();
 	}
 }
-Data_value CPU::get_data(double number){
-	cout << "N'utilise pas ça" << endl;
-	Data_value V(0,false);
-	return V;
+Data_value CPU::get_data(double number){printf("In CPU\n" );
+	//cout << "N'utilise pas ça" << endl;
+	//printf("N'utilise pas ça\n");
+	//Data_value V(0,false);
+	//return V;
+	if (reg->isempty()){printf("EMPTY\n" );
+		Data_value Wvalue(0,false);
+		return Wvalue;
+	}
+	else {printf("NOT EMPTY\n" );
+		return reg->read();
+	}
 }
 void CPU::info(){
-	cout << freq << endl;
-	cout << cores << endl;
-	cout << active << endl;
-	cout << label << endl;
+	//cout << freq << endl;
+	printf("fréquence : %d\n",freq);
+	//cout << cores << endl;
+	printf("cores : %d\n",cores);
+	//cout << active << endl;
+	printf("active : %d\n",active);
+	//cout << label << endl;
+	char cstr[label.size()+1];
+  strcpy(cstr, label.c_str());
+	printf("label : %s\n",cstr);
 }

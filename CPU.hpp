@@ -16,7 +16,7 @@ class CPU : public Component {
 
 	private:
 		CPU_Register* reg;
-		double freq;
+		int freq;
 		int cores;
 		int active;
 		string label;

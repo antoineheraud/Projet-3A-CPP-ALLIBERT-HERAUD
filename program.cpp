@@ -65,10 +65,10 @@ Program::~Program(){
 }
 
 double Program::compute(){
-  cout << "inst_pointer " << F_pointer << endl;
+  //cout << "inst_pointer " << F_pointer << endl;
   Instruction inst =   L_instructions[F_pointer];
   F_pointer = F_pointer+1;
-  cout << inst.getopc() << endl;
+  //cout << inst.getopc() << endl;
   //cout << inst.getA() << endl;
   //cout << inst.getB() << endl;
   if (F_pointer>L_length) {
