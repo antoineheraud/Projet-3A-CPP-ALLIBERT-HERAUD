@@ -22,10 +22,13 @@ private:
   void erase();
        
 public:
+  Component* get_ptr();
   void simulate();
   double get_size();
+  string get_source();
+  string get_label();
   void load_source(Component* ptr);
-  Data_value get_data(double number);
+  Data_value read(double number = 0);
   void info();
   Memory(string def);
   ~Memory();

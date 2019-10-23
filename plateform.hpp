@@ -1,19 +1,25 @@
 #ifndef PLATEFORM
 #define PLATEFORM
 
+#include<vector>
 #include<iostream>
 
 using namespace std;
 
 class Plateform {
+  
+private:
+  int counter;
+  vector<Component*> tableau;
+  int nb_obj;
 
-	private:
-		int counter;
-	
-	public:
-		void simulate();
-		Plateform(string def);
-		~Plateform();
+public:
+  vector<Component*> get_tab();
+  int get_nb_obj();
+  void simulate();
+  Plateform(string def);
+  Component* create(string def);
+  ~Plateform();
 
 };
 

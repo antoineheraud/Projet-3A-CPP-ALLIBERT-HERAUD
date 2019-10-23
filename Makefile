@@ -3,7 +3,7 @@ CFLAGS = -Wall
 EXEC_NAME = simul.exe
 INCLUDES = 
 LIBS =
-OBJ_FILES = data_value.o display.o memory.o main.o
+OBJ_FILES = data_value.o plateform.o display.o memory.o program.o CPU_register.o CPU.o bus.o main.o
 INSTALL_DIR = /usr/bin
 
 all : $(EXEC_NAME)

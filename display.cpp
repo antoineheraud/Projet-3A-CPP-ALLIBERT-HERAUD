@@ -9,7 +9,7 @@ double Display::get_size(){
 }
 
 
-Data_value Display::get_data(double number){
+Data_value Display::read(double number){
   std::cout << "This function cannot be used in Display" << std::endl;
   Data_value donnee(number, false);
   return donnee;
@@ -20,6 +20,9 @@ void Display::load_source(Component* ptr){
   this->psource = ptr;
 }
 
+Component* Display::get_ptr(){
+  return this->psource;
+}
 
 void Display::simulate(){
   double i;
@@ -27,10 +30,10 @@ void Display::simulate(){
   
    if(this->counter % this->refresh == 0){
     this->counter = 0;
-    for(i=0; i<psource->get_size(); ++i){
-      donnee = psource->get_data(i);
+    for(i=0; i<this->psource->get_size(); ++i){
+      donnee = this->psource->read(i);
       if(donnee.isvalid()){
-	std::cout << donnee.get_value() << std::endl;
+	std::cout << i << " : " << donnee.get_value() << std::endl;
       }
       else {
 	break;
@@ -38,16 +41,26 @@ void Display::simulate(){
     }
   }
   this->counter += 1;
-  std::cout << "-------------" << std::endl;
 }
 
 
 void Display::info(){
-  std::cout << "TYPE: DISPLAY" << std::endl;
-  std::cout << "REFRESH: " << this->refresh << std::endl;
-  std::cout << "COUNTER: " << this->counter << std::endl;
-  std::cout << "SOURCE: " << this->source << std::endl;
+  std::cout << "TYPE         : DISPLAY" << std::endl;
+  std::cout << "REFRESH      : " << this->refresh << std::endl;
+  std::cout << "COUNTER      : " << this->counter << std::endl;
+  std::cout << "SOURCE       : " << this->source << std::endl;
 }
+
+
+string Display::get_source(){
+  return this->source;
+}
+
+
+string Display::get_label(){
+  return this->label;
+}
+
 
 
 Display::Display(string def){
@@ -88,9 +101,10 @@ Display::Display(string def){
       }
       this->counter = 0;
       this->psource = 0;
+      this->label = "_Display_";
     }
   }
-  std::cout << "Display succesfully loaded" <<std:: endl;
+  std::cout << "\e[1mDisplay\e[0m succesfully loaded" << std::endl;
 }
 
 

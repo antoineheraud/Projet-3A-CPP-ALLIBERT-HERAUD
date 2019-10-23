@@ -2,6 +2,6 @@ testdata/mem1.txt
 testdata/mem2.txt
 testdata/bus1.txt
 testdata/bus2.txt
-testdata/display.txt
 testdata/cpu1.txt
 testdata/cpu2.txt
+testdata/display.txt
